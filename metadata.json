@@ -1,0 +1,7 @@
+{
+  "name": "Anim8",
+  "description": "Your user-friendly stop-motion app!",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
