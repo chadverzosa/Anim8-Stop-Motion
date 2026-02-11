@@ -1,14 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anim8</title>
+  
+  <!-- 1. LINK TO MANIFEST -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -16,26 +20,32 @@
       color: #f8fafc;
       overflow: hidden;
     }
-    .hide-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .hide-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
+    "@google/genai": "https://esm.sh@^1.40.0",
+    "react-dom/": "https://esm.sh@^19.2.4/",
+    "react/": "https://esm.sh@^19.2.4/",
+    "react": "https://esm.sh@^19.2.4"
   }
 }
 </script>
 </head>
 <body>
   <div id="root"></div>
+
+  <!-- 2. REGISTER SERVICE WORKER -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Anim8 PWA Registered!'))
+          .catch(err => console.error('PWA Registration Failed', err));
+      });
+    }
+  </script>
 </body>
 </html>
